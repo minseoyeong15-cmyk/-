@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>나 철들었나? — 2027 안서동 청년 창업 박람회</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+:root {
+  --spring-bg: #e8f5e2;
+  --spring-main: #5c9e3a;
+  --spring-soft: #b8e0a0;
+  --summer-bg: #fff8e0;
+  --summer-main: #e8a020;
+  --summer-soft: #fde89a;
+  --autumn-bg: #fdeee6;
+  --autumn-main: #d05020;
+  --autumn-soft: #f8c8a8;
+  --winter-bg: #e6f0fa;
+  --winter-main: #3070b8;
+  --winter-soft: #a8ccf0;
+  --white: #ffffff;
+  --ink: #2a2420;
+  --muted: #9a8e88;
+  --border: rgba(42,36,32,0.1);
+  --bg: #fffdf9;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.screen { display:none; min-height:100vh; }
+.screen.active { display:flex; flex-direction:column; }
+
+/* ─── INTRO ─── */
+#s-intro {
+  background: #fff9f0;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 28px;
+}
+
+/* 귀여운 물결 배경 */
+.bg-waves {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 45%;
+  overflow: hidden;
+}
+.bg-waves svg { width:100%; height:100%; }
+
+.bg-dots {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.dot {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.35;
+}
+
+.intro-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.badge {
+  background: #fff;
+  border: 1.5px solid #fad5a0;
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 11px;
+  color: #c8780a;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+/* 메인 일러스트 박스 */
+.illust-box {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 24px;
+  position: relative;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.illust-box svg {
+  width: 100%; height: 100%;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.08));
+}
+
+.intro-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 38px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+
+.intro-title .q-mark {
+  color: #e8a020;
+}
+
+.intro-sub {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+/* 계절 칩 */
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+.chip {
+  padding: 7px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.chip-s { background:#e0f5d4; color:#4a8a2a; }
+.chip-u { background:#fff0c0; color:#c07800; }
+.chip-a { background:#fde0d0; color:#b84010; }
+.chip-w { background:#d8eaf8; color:#2060a8; }
+
+.btn-start { font-family: 'Noto Sans KR', sans-serif !important; 
+  width: 100%;
+  max-width: 280px;
+  padding: 18px;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 6px 0 rgba(42,36,32,0.25);
+  letter-spacing: 0.05em;
+}
+.btn-start:hover { transform: translateY(-3px); box-shadow: 0 9px 0 rgba(42,36,32,0.25); }
+.btn-start:active { transform: translateY(2px); box-shadow: 0 4px 0 rgba(42,36,32,0.25); }
+
+.intro-foot {
+  margin-top: 24px;
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+
+/* ─── QUIZ ─── */
+#s-quiz {
+  background: var(--bg);
+}
+
+.quiz-header {
+  padding: 20px 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.qh-back {
+  width: 36px; height: 36px;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.qh-back:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+.prog-wrap {
+  flex: 1;
+  height: 8px;
+  background: rgba(42,36,32,0.07);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #5c9e3a, #e8a020, #d05020, #3070b8);
+  border-radius: 100px;
+  transition: width 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.q-num-badge {
+  background: var(--ink);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 100px;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+.quiz-content {
+  flex: 1;
+  padding: 32px 24px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 계절 캐릭터 힌트 */
+.season-char {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: wobble 0.4s ease;
+  line-height: 1;
+}
+
+@keyframes wobble {
+  0% { transform: rotate(-8deg) scale(0.8); }
+  50% { transform: rotate(4deg) scale(1.05); }
+  100% { transform: rotate(0) scale(1); }
+}
+
+.q-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 28px 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 0 rgba(42,36,32,0.06), 0 8px 24px rgba(42,36,32,0.04);
+  border: 1.5px solid rgba(42,36,32,0.06);
+  flex: 1;
+}
+
+.q-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.q-text {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(20px, 5.5vw, 26px);
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--ink);
+  white-space: pre-line;
+}
+
+.opt-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.opt-btn {
+  padding: 18px 20px;
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 3px 0 rgba(42,36,32,0.06);
+  text-align: left;
+}
+
+.opt-btn:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 6px 0 rgba(42,36,32,0.1);
+  border-color: var(--ink);
+}
+
+.opt-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 0 rgba(42,36,32,0.1);
+}
+
+.opt-btn.selected {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+  transform: scale(1.02);
+  box-shadow: 0 5px 0 rgba(42,36,32,0.3);
+}
+
+.opt-ico {
+  width: 44px; height: 44px;
+  background: var(--bg);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  transition: all 0.18s;
+}
+.opt-btn.selected .opt-ico {
+  background: rgba(255,255,255,0.15);
+}
+
+.opt-txt {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 20px;
+  font-weight: 700;
+  flex: 1;
+  transition: color 0.18s;
+}
+
+/* ─── RESULT ─── */
+#s-result {
+  background: var(--bg);
+  overflow-y: auto;
+}
+
+.result-top {
+  position: relative;
+  padding: 48px 28px 36px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* 결과 상단 배경 — 계절별 */
+.result-top.spring { background: var(--spring-bg); }
+.result-top.summer { background: var(--summer-bg); }
+.result-top.autumn { background: var(--autumn-bg); }
+.result-top.winter { background: var(--winter-bg); }
+
+.r-bg-deco {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.r-deco-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.25;
+}
+
+.r-char-big {
+  font-size: 96px;
+  display: block;
+  margin-bottom: 12px;
+  animation: bounceIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+  position: relative; z-index: 1;
+}
+@keyframes bounceIn {
+  from { transform: scale(0.3) rotate(-15deg); opacity:0; }
+  to   { transform: scale(1) rotate(0); opacity:1; }
+}
+
+.r-season-name {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 52px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  position: relative; z-index:1;
+  animation: slideUp 0.5s ease both 0.2s;
+}
+
+.r-nick-tag {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 0;
+  animation: slideUp 0.5s ease both 0.3s;
+  position: relative; z-index:1;
+}
+.spring .r-nick-tag { background: var(--spring-soft); color: var(--spring-main); }
+.summer .r-nick-tag { background: var(--summer-soft); color: var(--summer-main); }
+.autumn .r-nick-tag { background: var(--autumn-soft); color: var(--autumn-main); }
+.winter .r-nick-tag { background: var(--winter-soft); color: var(--winter-main); }
+
+@keyframes slideUp {
+  from { transform: translateY(16px); opacity:0; }
+  to   { transform: translateY(0); opacity:1; }
+}
+
+/* 결과 카드 */
+.result-body {
+  padding: 0 20px 40px;
+}
+
+.r-desc-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 24px 20px;
+  margin: -20px 0 16px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 4px 0 rgba(42,36,32,0.05), 0 12px 32px rgba(42,36,32,0.06);
+  border: 1.5px solid rgba(42,36,32,0.05);
+  animation: slideUp 0.5s ease both 0.4s;
+}
+
+.r-desc-text {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 19px;
+  line-height: 1.8;
+  color: var(--ink);
+  white-space: pre-line;
+  text-align: center;
+}
+
+/* 포스터 카드 */
+.poster-wrap {
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 0 rgba(42,36,32,0.08), 0 16px 40px rgba(42,36,32,0.1);
+  animation: slideUp 0.5s ease both 0.5s;
+  aspect-ratio: 3/4;
+}
+.poster-wrap canvas { width:100%; height:100%; display:block; }
+
+/* 박람회 블록 */
+.fair-card {
+  background: var(--ink);
+  border-radius: 24px;
+  padding: 24px 20px;
+  margin-bottom: 14px;
+  animation: slideUp 0.5s ease both 0.6s;
+  position: relative;
+  overflow: hidden;
+}
+
+.fair-deco {
+  position: absolute;
+  right: -10px; bottom: -15px;
+  font-size: 80px;
+  opacity: 0.08;
+  transform: rotate(15deg);
+}
+
+.fair-kicker {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: #f0b840;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.fair-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.fair-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+}
+
+.fair-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.fair-info-item {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  align-items: flex-start;
+}
+.fair-dot {
+  width: 5px; height: 5px;
+  background: #f0b840;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+
+
+/* 액션 버튼 */
+.act-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+  animation: slideUp 0.5s ease both 0.8s;
+}
+.act-b {
+  padding: 16px 10px;
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.34,1.56,0.64,1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 3px 0 rgba(42,36,32,0.07);
+}
+.act-b:hover { transform: translateY(-3px); box-shadow: 0 6px 0 rgba(42,36,32,0.1); border-color: var(--ink); }
+.act-b span:first-child { font-size: 24px; }
+
+.retry-b {
+  width: 100%;
+  padding: 16px;
+  background: transparent;
+  border: 2px dashed var(--border);
+  border-radius: 18px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 15px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  animation: slideUp 0.5s ease both 0.9s;
+}
+.retry-b:hover { color: var(--ink); border-color: var(--ink); }
+
+/* 오프스크린 */
+#offscreen { display:none; }
+
+/* 토스트 */
+.toast {
+  position: fixed;
+  bottom: 28px; left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 100px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 16px;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  pointer-events: none;
+  z-index: 9999;
+  white-space: nowrap;
+}
+.toast.on { opacity:1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ── 인트로 ── -->
+<div class="screen active" id="s-intro">
+  <div class="bg-dots">
+    <div class="dot" style="width:80px;height:80px;background:#b8e0a0;top:5%;left:5%;border-radius:50%;"></div>
+    <div class="dot" style="width:50px;height:50px;background:#fde89a;top:10%;right:8%;border-radius:50%;"></div>
+    <div class="dot" style="width:60px;height:60px;background:#f8c8a8;bottom:25%;right:5%;border-radius:50%;"></div>
+    <div class="dot" style="width:40px;height:40px;background:#a8ccf0;bottom:30%;left:6%;border-radius:50%;"></div>
+    <div class="dot" style="width:24px;height:24px;background:#b8e0a0;top:22%;left:20%;border-radius:50%;"></div>
+    <div class="dot" style="width:18px;height:18px;background:#fde89a;top:30%;right:25%;border-radius:50%;"></div>
+  </div>
+
+  <div class="bg-waves">
+    <svg viewBox="0 0 390 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,80 Q80,30 160,80 Q240,130 320,80 Q360,55 390,70 L390,200 L0,200 Z" fill="#fff0d8" opacity="0.5"/>
+      <path d="M0,110 Q100,60 200,110 Q280,150 390,100 L390,200 L0,200 Z" fill="#e8f0ff" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="intro-inner">
+    <div class="badge">✦ 2027 ANSEO 심리테스트</div>
+
+    <!-- 메인 캐릭터 일러스트 -->
+    <div class="illust-box">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- 하늘 배경 -->
+        <circle cx="100" cy="100" r="90" fill="#fff8ee"/>
+        <!-- 구름 -->
+        <ellipse cx="60" cy="55" rx="22" ry="13" fill="#fff"/>
+        <ellipse cx="75" cy="48" rx="16" ry="12" fill="#fff"/>
+        <ellipse cx="145" cy="50" rx="18" ry="11" fill="#fff"/>
+        <ellipse cx="160" cy="44" rx="13" ry="10" fill="#fff"/>
+        <!-- 봄 나무 -->
+        <rect x="88" y="110" width="24" height="50" rx="8" fill="#c8845c"/>
+        <circle cx="100" cy="96" r="34" fill="#5c9e3a"/>
+        <circle cx="80" cy="104" r="22" fill="#6aaa44"/>
+        <circle cx="120" cy="104" r="22" fill="#6aaa44"/>
+        <!-- 꽃 -->
+        <circle cx="95" cy="88" r="5" fill="#ffb8c8"/>
+        <circle cx="108" cy="82" r="4" fill="#ff9eb0"/>
+        <circle cx="88" cy="96" r="4" fill="#ffd0dc"/>
+        <circle cx="112" cy="94" r="5" fill="#ffb8c8"/>
+        <!-- 땅 -->
+        <ellipse cx="100" cy="162" rx="55" ry="12" fill="#a8d870"/>
+        <!-- 사람 -->
+        <circle cx="100" cy="130" r="12" fill="#ffe0b8"/>
+        <rect x="93" y="140" width="14" height="18" rx="5" fill="#7ab8f0"/>
+        <!-- 얼굴 -->
+        <circle cx="95" cy="128" r="2" fill="#5a4030"/>
+        <circle cx="105" cy="128" r="2" fill="#5a4030"/>
+        <path d="M96,133 Q100,136 104,133" stroke="#c87060" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- 새 -->
+        <path d="M130,65 Q136,60 140,65" stroke="#5a4030" stroke-width="1.5" fill="none"/>
+        <path d="M150,55 Q156,50 160,55" stroke="#5a4030" stroke-width="1.5" fill="none"/>
+        <!-- 테두리 -->
+        <circle cx="100" cy="100" r="90" fill="none" stroke="#e8d8c0" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <h1 class="intro-title">나 철들었나<span class="q-mark">?</span></h1>
+    <p class="intro-sub">
+      5가지 질문으로 알아보는<br>
+      나와 안서동 사이의 계절 🌾
+    </p>
+
+    <div class="chips">
+      <div class="chip chip-s">🌱 봄철</div>
+      <div class="chip chip-u">☀️ 여름철</div>
+      <div class="chip chip-a">🍂 가을철</div>
+      <div class="chip chip-w">❄️ 겨울철</div>
+    </div>
+
+    <button class="btn-start" onclick="startQuiz()">시작하기 🍀</button>
+    <p class="intro-foot">2027 안서동 청년 창업 박람회 — 안서동 '철' 들었네</p>
+  </div>
+</div>
+
+<!-- ── 퀴즈 ── -->
+<div class="screen" id="s-quiz">
+  <div class="quiz-header">
+    <button class="qh-back" onclick="goBack()">←</button>
+    <div class="prog-wrap">
+      <div class="prog-fill" id="prog"></div>
+    </div>
+    <div class="q-num-badge" id="qnum">1/5</div>
+  </div>
+  <div class="quiz-content">
+    <div class="season-char" id="schar">🌱</div>
+    <div class="q-card">
+      <p class="q-label" id="qlabel">Q.01</p>
+      <p class="q-text" id="qtext"></p>
+    </div>
+    <div class="opt-grid" id="opts"></div>
+  </div>
+</div>
+
+<!-- ── 결과 ── -->
+<div class="screen" id="s-result">
+  <div class="result-top" id="rtop">
+    <div class="r-bg-deco" id="rbgdeco"></div>
+    <span class="r-char-big" id="remoji"></span>
+    <h2 class="r-season-name" id="rseason"></h2>
+    <span class="r-nick-tag" id="rnick"></span>
+  </div>
+
+  <div class="result-body">
+    <div class="r-desc-card">
+      <p class="r-desc-text" id="rdesc"></p>
+    </div>
+
+    <div class="poster-wrap">
+      <canvas id="pcard"></canvas>
+    </div>
+
+    <div class="fair-card">
+      <div class="fair-deco">🌾</div>
+      <p class="fair-kicker">✦ Invitation</p>
+      <p class="fair-title">2027 안서동<br>청년 창업 박람회</p>
+      <p class="fair-sub">— 안서동 '철' 들었네 —</p>
+      <div class="fair-info-list">
+        <div class="fair-info-item"><div class="fair-dot"></div><span>천호지 · 천안시 동남구 안서동</span></div>
+        <div class="fair-info-item"><div class="fair-dot"></div><span>백석대 · 상명대 · 단국대 · 백석문화대 · 호서대</span></div>
+        <div class="fair-info-item"><div class="fair-dot"></div><span>당신의 철이 어디쯤인지, 직접 확인해보세요</span></div>
+      </div>
+    </div>
+    </div>
+
+    <div class="act-row">
+      <button class="act-b" onclick="saveCard()"><span>💾</span>결과 저장</button>
+      <button class="act-b" onclick="copyResult()"><span>🔗</span>공유하기</button>
+    </div>
+    <button class="retry-b" onclick="retry()">🔄 다시 하기</button>
+  </div>
+</div>
+
+<canvas id="offscreen" width="900" height="1200"></canvas>
+<div class="toast" id="toast"></div>
+
+<script>
+const QS=[
+  {text:"안서동에 있는 다른\n대학교 이름을 알고 있다", y:"알고 있다", n:"모르겠다", char:"🌱", label:"Q.01"},
+  {text:"내 전공 말고\n다른 전공 친구가 있다",        y:"있다",     n:"없다",    char:"☀️", label:"Q.02"},
+  {text:"배달보다\n근처 가게를 직접 가는 편이다",      y:"그렇다",   n:"아니다",  char:"🍂", label:"Q.03"},
+  {text:"지금 살고 있는 동네에\n애정이 있다",          y:"있다",     n:"별로",    char:"❄️", label:"Q.04"},
+  {text:"내가 만든 무언가로\n누군가에게 도움을 준 적 있다", y:"있다", n:"없다",  char:"🌾", label:"Q.05"},
+];
+
+const RS=[
+  {range:[0,1], emoji:"🌱", season:"봄철", nick:"안서동 새내기",
+   desc:"아직 안서동이 낯설어요.\n괜찮아요, 모든 시작은 봄이니까요.\n안서 사시사철에서 첫 싹을 틔워보세요.",
+   cls:"spring", main:"#5c9e3a", soft:"#b8e0a0", bg:"#e8f5e2",
+   deco:["#b8e0a0","#d4f0b8","#90c870"],
+   icons:["🌸","🌿","🌷","🍃","🌱"]},
+  {range:[2,3], emoji:"☀️", season:"여름철", nick:"안서동 적응러",
+   desc:"안서동이랑 조금씩 가까워지고 있어요.\n한창 자라는 중이에요.\n안서 사시사철에서 더 크게 자라볼까요?",
+   cls:"summer", main:"#e8a020", soft:"#fde89a", bg:"#fff8e0",
+   deco:["#fde89a","#fdd060","#f8b830"],
+   icons:["☀️","🌻","🌊","🍋","⭐"]},
+  {range:[4,4], emoji:"🍂", season:"가을철", nick:"안서동 탐험가",
+   desc:"안서동이랑 꽤 친해졌네요.\n슬슬 철들 때가 됐어요.\n안서 사시사철에서 1년간 익힌 것들을\n만나보세요.",
+   cls:"autumn", main:"#d05020", soft:"#f8c8a8", bg:"#fdeee6",
+   deco:["#f8c8a8","#f0a880","#e87848"],
+   icons:["🍂","🍁","🌾","🎃","🍄"]},
+  {range:[5,5], emoji:"❄️", season:"겨울철", nick:"안서동 메이커",
+   desc:"완전히 철들었네요.\n안서동이 당신을 기다리고 있어요.\n2027 안서동 청년 창업 박람회가\n당신 같은 사람을 기다립니다.",
+   cls:"winter", main:"#3070b8", soft:"#a8ccf0", bg:"#e6f0fa",
+   deco:["#a8ccf0","#78b0e8","#4888d0"],
+   icons:["❄️","⛄","🌨️","🏔️","💙"]},
+];
+
+let cur=0, score=0, curR=null;
+
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function startQuiz(){ cur=0; score=0; renderQ(); go('s-quiz'); }
+
+function renderQ(){
+  const q=QS[cur];
+  document.getElementById('prog').style.width=((cur+1)/5*100)+'%';
+  document.getElementById('qnum').textContent=(cur+1)+'/5';
+  document.getElementById('schar').textContent=q.char;
+  document.getElementById('qlabel').textContent=q.label;
+  document.getElementById('qtext').textContent=q.text;
+
+  const wrap=document.getElementById('opts');
+  wrap.innerHTML='';
+
+  const yicos=["✅","🙌","🚶","🏡","✨"];
+  const nicos=["❓","🙈","📱","😐","💭"];
+
+  [{label:q.y,ico:yicos[cur],isY:true},{label:q.n,ico:nicos[cur],isY:false}].forEach(({label,ico,isY})=>{
+    const b=document.createElement('button');
+    b.className='opt-btn';
+    b.innerHTML=`<div class="opt-ico">${ico}</div><span class="opt-txt">${label}</span>`;
+    b.onclick=()=>{
+      document.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('selected'));
+      b.classList.add('selected');
+      setTimeout(()=>pick(isY), 350);
+    };
+    wrap.appendChild(b);
+  });
+}
+
+function pick(isY){
+  if(isY) score++;
+  cur++;
+  if(cur<QS.length) renderQ();
+  else showResult();
+}
+
+function goBack(){
+  if(cur===0) go('s-intro');
+  else { cur--; renderQ(); }
+}
+
+function showResult(){
+  curR=RS.find(r=>score>=r.range[0]&&score<=r.range[1]);
+
+  // 상단 영역 꾸미기
+  const top=document.getElementById('rtop');
+  top.className='result-top '+curR.cls;
+
+  // 배경 데코 원들
+  const deco=document.getElementById('rbgdeco');
+  deco.innerHTML='';
+  [[80,10,5,0],[50,70,15,1],[60,40,25,2],[70,80,8,0]].forEach(([l,t,s,ci])=>{
+    const d=document.createElement('div');
+    d.className='r-deco-circle';
+    d.style.cssText=`left:${l}%;top:${t}%;width:${60+s*8}px;height:${60+s*8}px;background:${curR.deco[ci]};`;
+    deco.appendChild(d);
+  });
+
+  document.getElementById('remoji').textContent=curR.emoji;
+  document.getElementById('rseason').textContent=curR.season;
+  document.getElementById('rseason').style.color=curR.main;
+  document.getElementById('rnick').textContent=curR.nick;
+  document.getElementById('rdesc').textContent=curR.desc;
+
+  drawPoster(document.getElementById('pcard'), curR);
+  go('s-result');
+}
+
+/* ── 포스터 카드 ── */
+function drawPoster(c, r){
+  const W=c.parentElement.clientWidth||320;
+  const H=Math.round(W*4/3);
+  c.width=W; c.height=H;
+  const ctx=c.getContext('2d');
+
+  // 배경
+  ctx.fillStyle=r.bg; ctx.fillRect(0,0,W,H);
+
+  // 데코 원들
+  const circles=[
+    {x:W*0.85,y:H*0.08,r:W*0.22,c:r.deco[0],a:0.5},
+    {x:W*0.1, y:H*0.15,r:W*0.14,c:r.deco[1],a:0.4},
+    {x:W*0.75,y:H*0.4, r:W*0.1, c:r.deco[2],a:0.3},
+    {x:W*0.15,y:H*0.75,r:W*0.18,c:r.deco[0],a:0.35},
+    {x:W*0.88,y:H*0.82,r:W*0.12,c:r.deco[1],a:0.3},
+  ];
+  circles.forEach(({x,y,r:rad,c:col,a})=>{
+    ctx.beginPath(); ctx.arc(x,y,rad,0,Math.PI*2);
+    ctx.fillStyle=col+Math.round(a*255).toString(16).padStart(2,'0');
+    ctx.fill();
+  });
+
+  // 귀여운 아이콘들 흩뿌리기
+  ctx.font=`${W*0.07}px serif`;
+  const spots=[[0.12,0.1],[0.75,0.12],[0.2,0.3],[0.82,0.35],[0.08,0.55],[0.78,0.6],[0.18,0.78],[0.72,0.82]];
+  spots.forEach(([px,py],i)=>{
+    ctx.globalAlpha=0.35;
+    ctx.fillText(r.icons[i%r.icons.length], W*px, H*py);
+  });
+  ctx.globalAlpha=1;
+
+  // 흰 카드
+  roundRect(ctx, W*0.08, H*0.2, W*0.84, H*0.65, 20);
+  ctx.fillStyle='rgba(255,255,255,0.88)'; ctx.fill();
+
+  // 이모지
+  ctx.font=`${W*0.22}px serif`;
+  ctx.textAlign='center';
+  ctx.fillText(r.emoji, W*0.5, H*0.42);
+
+  // 계절명
+  ctx.fillStyle=r.main;
+  ctx.font=`700 ${W*0.11}px sans-serif`;
+  ctx.fillText(r.season, W*0.5, H*0.52);
+
+  // 닉네임 배지
+  ctx.fillStyle=r.soft;
+  roundRect(ctx, W*0.28, H*0.55, W*0.44, H*0.055, 100);
+  ctx.fill();
+  ctx.fillStyle=r.main;
+  ctx.font=`500 ${W*0.038}px sans-serif`;
+  ctx.fillText(r.nick, W*0.5, H*0.585);
+
+  // 설명
+  ctx.fillStyle='#6a5a50';
+  ctx.font=`300 ${W*0.034}px sans-serif`;
+  const lines=r.desc.split('\n').slice(0,3);
+  lines.forEach((l,i)=> ctx.fillText(l, W*0.5, H*0.655+i*H*0.048));
+
+  // 하단 박람회
+  ctx.fillStyle=r.main;
+  ctx.fillRect(W*0.08, H*0.88, W*0.84, 1.5);
+
+  ctx.fillStyle=r.main;
+  ctx.font=`700 ${W*0.038}px sans-serif`;
+  ctx.fillText('2027 안서동 청년 창업 박람회', W*0.5, H*0.92);
+  ctx.fillStyle='#9a8e88';
+  ctx.font=`300 ${W*0.028}px sans-serif`;
+  ctx.fillText("안서동 '철' 들었네  ·  천호지", W*0.5, H*0.955);
+}
+
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+
+
+function saveCard(){
+  if(!curR) return;
+  const c=document.getElementById('offscreen');
+  c.width=900; c.height=1200;
+  drawPosterBig(c, curR);
+  const a=document.createElement('a');
+  a.download=`나_철들었나_${curR.season}.png`;
+  a.href=c.toDataURL('image/png'); a.click();
+  toast('결과 카드가 저장됐어요 📸');
+}
+
+function drawPosterBig(c, r){
+  const W=900, H=1200;
+  const ctx=c.getContext('2d');
+  ctx.fillStyle=r.bg; ctx.fillRect(0,0,W,H);
+
+  const circles=[
+    {x:W*0.85,y:H*0.08,rad:W*0.22,col:r.deco[0],a:0.5},
+    {x:W*0.1, y:H*0.15,rad:W*0.14,col:r.deco[1],a:0.4},
+    {x:W*0.75,y:H*0.4, rad:W*0.1, col:r.deco[2],a:0.3},
+    {x:W*0.15,y:H*0.75,rad:W*0.18,col:r.deco[0],a:0.35},
+    {x:W*0.88,y:H*0.82,rad:W*0.12,col:r.deco[1],a:0.3},
+  ];
+  circles.forEach(({x,y,rad,col,a})=>{
+    ctx.beginPath(); ctx.arc(x,y,rad,0,Math.PI*2);
+    ctx.fillStyle=col+Math.round(a*255).toString(16).padStart(2,'0');
+    ctx.fill();
+  });
+
+  ctx.font='72px serif';
+  const spots=[[0.12,0.1],[0.75,0.12],[0.2,0.3],[0.82,0.35],[0.08,0.55],[0.78,0.6],[0.18,0.78],[0.72,0.82]];
+  spots.forEach(([px,py],i)=>{
+    ctx.globalAlpha=0.3;
+    ctx.textAlign='center';
+    ctx.fillText(r.icons[i%r.icons.length], W*px, H*py);
+  });
+  ctx.globalAlpha=1;
+
+  roundRect(ctx, W*0.08, H*0.2, W*0.84, H*0.65, 30);
+  ctx.fillStyle='rgba(255,255,255,0.9)'; ctx.fill();
+
+  ctx.font='200px serif'; ctx.textAlign='center';
+  ctx.fillText(r.emoji, W*0.5, H*0.42);
+
+  ctx.fillStyle=r.main;
+  ctx.font=`700 100px sans-serif`;
+  ctx.fillText(r.season, W*0.5, H*0.53);
+
+  ctx.fillStyle=r.soft;
+  roundRect(ctx, W*0.3, H*0.555, W*0.4, H*0.048, 100); ctx.fill();
+  ctx.fillStyle=r.main; ctx.font=`500 36px sans-serif`;
+  ctx.fillText(r.nick, W*0.5, H*0.587);
+
+  ctx.fillStyle='#6a5a50'; ctx.font=`300 34px sans-serif`;
+  r.desc.split('\n').slice(0,3).forEach((l,i)=> ctx.fillText(l, W*0.5, H*0.655+i*H*0.048));
+
+  ctx.fillStyle=r.main; ctx.fillRect(W*0.08,H*0.87,W*0.84,2);
+  ctx.fillStyle=r.main; ctx.font=`700 36px sans-serif`;
+  ctx.fillText('2027 안서동 청년 창업 박람회', W*0.5, H*0.915);
+  ctx.fillStyle='#9a8e88'; ctx.font=`300 28px sans-serif`;
+  ctx.fillText("안서동 '철' 들었네  ·  천호지", W*0.5, H*0.95);
+}
+
+function copyResult(){
+  if(!curR) return;
+  navigator.clipboard.writeText(
+    `나 철들었나? 테스트 결과\n\n나는 ${curR.emoji} ${curR.season} — ${curR.nick}\n\n${curR.desc}\n\n─\n2027 안서동 청년 창업 박람회\n안서동 '철' 들었네 | 천호지`
+  ).then(()=>toast('결과가 복사됐어요! 공유해보세요 🔗'));
+}
+
+function retry(){ startQuiz(); }
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'),2800);
+}
+</script>
+</body>
+</html>
